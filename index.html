@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jerico Hita · Full-Stack Developer (PHP, Laravel, React)</title>
+<meta name="description" content="Portfolio of Jerico Hita, full-stack developer building POS, HRIS, inventory and dispatch systems with PHP, Laravel, React and MySQL.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#E9EEF2; --surface:#FFFFFF; --ink:#18222F; --muted:#546273;
+  --line:#C9D3DC; --accent:#0E6B5A; --accent-soft:#D5EAE4; --paper:#FFFFFF; --paper-ink:#1F2A36;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Consolas, monospace;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#121A22; --surface:#1A2530; --ink:#E6ECF1; --muted:#9AA9B7;
+    --line:#2C3A47; --accent:#5CC3AC; --accent-soft:#1D3B37; --paper:#F4F6F5; --paper-ink:#1F2A36;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121A22; --surface:#1A2530; --ink:#E6ECF1; --muted:#9AA9B7;
+  --line:#2C3A47; --accent:#5CC3AC; --accent-soft:#1D3B37; --paper:#F4F6F5; --paper-ink:#1F2A36;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 var(--body);-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 1.5rem}
+h1,h2,h3{font-family:var(--display);line-height:1.1;margin:0}
+h2{font-size:clamp(1.75rem,3.5vw,2.5rem);font-weight:800;letter-spacing:-.02em;margin-bottom:.5rem}
+.lede{color:var(--muted);max-width:60ch;margin:0 0 2.5rem}
+section{padding:5rem 0;border-top:1px solid var(--line)}
+
+/* nav */
+nav{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 0;gap:1rem;flex-wrap:wrap}
+nav .name{font-family:var(--display);font-weight:800;font-size:1.15rem;color:var(--ink);text-decoration:none}
+nav ul{display:flex;gap:1.5rem;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+nav ul a{color:var(--muted);text-decoration:none;font-weight:500;font-size:.95rem}
+nav ul a:hover{color:var(--ink)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.25fr 1fr;gap:3rem;align-items:center;padding:3rem 0 5rem}
+.hero h1{font-size:clamp(2.4rem,5.6vw,4.25rem);font-weight:800;letter-spacing:-.035em}
+.hero p{font-size:1.15rem;color:var(--muted);max-width:52ch;margin:1.5rem 0 2rem}
+.actions{display:flex;gap:.75rem;flex-wrap:wrap}
+.btn{display:inline-block;padding:.8rem 1.35rem;border-radius:8px;font-weight:600;text-decoration:none;border:2px solid var(--accent)}
+.btn.primary{background:var(--accent);color:var(--bg)}
+.btn.ghost{color:var(--accent)}
+
+/* the receipt: the one bold element */
+.receipt{justify-self:center;width:100%;max-width:340px;background:var(--paper);color:var(--paper-ink);
+  font:400 .82rem/1.55 var(--mono);padding:1.75rem 1.5rem 2.25rem;transform:rotate(1.6deg);
+  box-shadow:0 18px 40px -18px rgba(12,30,45,.45);position:relative;
+  -webkit-mask:linear-gradient(#000 0 0) top/100% calc(100% - 10px) no-repeat,
+    radial-gradient(circle 7px at 50% 100%,transparent 96%,#000) bottom/16px 10px repeat-x;
+          mask:linear-gradient(#000 0 0) top/100% calc(100% - 10px) no-repeat,
+    radial-gradient(circle 7px at 50% 100%,transparent 96%,#000) bottom/16px 10px repeat-x;
+  animation:print .9s cubic-bezier(.2,.7,.2,1) both}
+@keyframes print{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
+.receipt .head{text-align:center;margin-bottom:1rem}
+.receipt .head strong{display:block;font-size:1rem;letter-spacing:.08em}
+.receipt .row{display:flex;justify-content:space-between;gap:.75rem}
+.receipt .row span:last-child{text-align:right}
+.receipt hr{border:0;border-top:1px dashed #9aa6b1;margin:.8rem 0}
+.receipt .total{font-weight:500;font-size:.95rem}
+.receipt .foot{text-align:center;margin-top:1rem;color:#56626e}
+.barcode{height:38px;margin:1rem auto 0;width:80%;
+  background:repeating-linear-gradient(90deg,#1F2A36 0 2px,transparent 2px 4px,#1F2A36 4px 5px,transparent 5px 8px,#1F2A36 8px 11px,transparent 11px 12px)}
+
+/* fit section */
+.fit{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:0;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+.fit div{padding:1.75rem;border-right:1px solid var(--line);border-bottom:1px solid var(--line);margin:-1px -1px 0 0}
+.fit h3{font-size:1.15rem;margin-bottom:.5rem}
+.fit p{margin:0;color:var(--muted);font-size:.98rem}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:2rem 3rem}
+.skills h3{font-size:1rem;font-family:var(--body);font-weight:600;color:var(--muted);margin-bottom:.75rem}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;margin:0;padding:0}
+.chips li{background:var(--surface);border:1px solid var(--line);padding:.35rem .75rem;border-radius:999px;font-size:.93rem;font-weight:500}
+
+/* projects */
+.project{display:grid;grid-template-columns:minmax(200px,1fr) 2fr;gap:2.5rem;padding:2.5rem 0;border-top:1px solid var(--line)}
+.project:first-of-type{border-top:0;padding-top:0}
+.project h3{font-size:1.6rem;font-weight:700;letter-spacing:-.015em}
+.project .kind{color:var(--muted);margin-top:.4rem;font-size:.95rem}
+.project p{margin:0 0 1rem;max-width:62ch}
+.project .match{background:var(--accent-soft);border-left:3px solid var(--accent);padding:.8rem 1rem;border-radius:0 8px 8px 0;font-size:.95rem;max-width:62ch}
+.project .match b{color:var(--accent)}
+
+/* timeline */
+.timeline{list-style:none;margin:0;padding:0;border-left:2px solid var(--line)}
+.timeline li{position:relative;padding:0 0 2.5rem 2rem}
+.timeline li::before{content:"";position:absolute;left:-7px;top:.45rem;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--accent)}
+.timeline .when{font-family:var(--mono);font-size:.85rem;color:var(--muted)}
+.timeline h3{font-size:1.3rem;margin:.2rem 0 .1rem}
+.timeline .org{font-weight:600;margin-bottom:.6rem}
+.timeline ul{margin:0;padding-left:1.1rem;color:var(--muted);max-width:68ch}
+.timeline ul li{padding:0 0 .35rem;border:0}
+.timeline ul li::before{display:none}
+
+/* recognition */
+.awards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem}
+.award{padding:1.25rem 1.4rem;background:var(--surface);border-radius:10px;border:1px solid var(--line)}
+.award.big{grid-column:span 2;background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.award.big h3{font-size:1.6rem}
+.award h3{font-size:1.1rem;margin-bottom:.3rem}
+.award p{margin:0;font-size:.95rem;opacity:.8}
+@media (max-width:640px){.award.big{grid-column:auto}}
+
+/* contact */
+.contact{text-align:left}
+.contact h2{font-size:clamp(2rem,5vw,3.25rem)}
+.contact dl{display:grid;grid-template-columns:max-content 1fr;gap:.6rem 1.5rem;margin:2rem 0}
+.contact dt{color:var(--muted)}
+.contact dd{margin:0;font-weight:500}
+footer{padding:2rem 0 3rem;color:var(--muted);font-size:.9rem}
+
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr;padding-top:1.5rem}
+  .receipt{transform:rotate(0)}
+  .project{grid-template-columns:1fr;gap:1rem}
+  section{padding:3.5rem 0}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav aria-label="Main">
+    <a class="name" href="#top">Jerico Hita</a>
+    <ul>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero" id="top">
+    <div>
+      <h1>I build the systems businesses run on every day.</h1>
+      <p>Full-stack developer working in PHP, Laravel, React and MySQL. I've shipped point-of-sale, inventory, HR and payroll, and dispatch systems, from the database schema and REST API through to the screens people use at work.</p>
+      <div class="actions">
+        <a class="btn primary" href="#work">See my work</a>
+        <a class="btn ghost" href="mailto:hitajerico@gmail.com">Email me</a>
+      </div>
+    </div>
+
+    <div class="receipt" role="img" aria-label="A printed receipt summarizing Jerico's skills: PHP and Laravel, CodeIgniter, React and React Native, MySQL, REST APIs, 3+ years in production, available for remote work.">
+      <div class="head">
+        <strong>JERICO HITA</strong>
+        FULL-STACK DEVELOPER<br>SORSOGON, PH
+      </div>
+      <hr>
+      <div class="row"><span>PHP / LARAVEL</span><span>1</span></div>
+      <div class="row"><span>CODEIGNITER</span><span>1</span></div>
+      <div class="row"><span>REACT.JS</span><span>1</span></div>
+      <div class="row"><span>REACT NATIVE</span><span>1</span></div>
+      <div class="row"><span>MYSQL</span><span>1</span></div>
+      <div class="row"><span>REST APIS</span><span>1</span></div>
+      <div class="row"><span>GIT / GITHUB</span><span>1</span></div>
+      <hr>
+      <div class="row"><span>SYSTEMS SHIPPED</span><span>POS, INV,<br>HRIS, CAD</span></div>
+      <div class="row"><span>IN PRODUCTION</span><span>3+ YRS</span></div>
+      <hr>
+      <div class="row total"><span>STATUS</span><span>OPEN TO WFH</span></div>
+      <div class="foot">THANK YOU, COME AGAIN</div>
+      <div class="barcode" aria-hidden="true"></div>
+    </div>
+  </header>
+</div>
+
+<section>
+  <div class="wrap">
+    <h2>What I bring to your team</h2>
+    <p class="lede">The work I've done lines up closely with building portals, APIs and point-of-sale software for telco and hospitality clients.</p>
+    <div class="fit">
+      <div><h3>Point-of-sale experience</h3><p>I've built a POS for transaction processing and sales tracking, plus the inventory system that sits behind it.</p></div>
+      <div><h3>Admin portals and APIs</h3><p>I design MySQL schemas and RESTful APIs for internal systems like HRIS, timekeeping and payroll, used by staff every day.</p></div>
+      <div><h3>Framework and no framework</h3><p>I work in Laravel and CodeIgniter, and I'm comfortable in plain PHP and JavaScript when an existing codebase calls for it.</p></div>
+      <div><h3>Clear communicator</h3><p>As an IT instructor I explain code for a living, which carries straight into code reviews, documentation and working with clients.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <h2>Selected work</h2>
+    <p class="lede">Systems I've designed and built end to end. Most are private or institutional, so each one is described by what it does and what I was responsible for.</p>
+
+    <article class="project">
+      <div><h3>POS System</h3><div class="kind">Retail and sales</div></div>
+      <div>
+        <p>A point-of-sale application for processing transactions and tracking sales. I built it full stack: the database design for products, transactions and sales records, the back-end logic, and the cashier-facing interface.</p>
+        <div class="match"><b>Why it's relevant:</b> the role includes developing and maintaining POS software for a Food &amp; Hospitality partner.</div>
+      </div>
+    </article>
+
+    <article class="project">
+      <div><h3>Inventory System</h3><div class="kind">Operations</div></div>
+      <div>
+        <p>A stock and inventory management platform for tracking items, stock levels and movement, with reporting so managers can see what's on hand.</p>
+        <div class="match"><b>Why it's relevant:</b> inventory data is the backbone of any POS, and it's the kind of large, frequently updated dataset that needs efficient MySQL queries.</div>
+      </div>
+    </article>
+
+    <article class="project">
+      <div><h3>HRIS, web and mobile</h3><div class="kind">The Lewis College · Laravel, React, React Native, MySQL</div></div>
+      <div>
+        <p>A human resource information system covering employee profiles, leave requests, timekeeping and payroll. I built the RESTful API and MySQL schema that both the web app and the React Native mobile app use, and I deploy and maintain it in production.</p>
+        <div class="match"><b>Why it's relevant:</b> this is the same shape as the admin, reseller and customer portals in the role: one API, several front ends, real users relying on it.</div>
+      </div>
+    </article>
+
+    <article class="project">
+      <div><h3>Computer-Aided Dispatch</h3><div class="kind">Operations and coordination</div></div>
+      <div>
+        <p>A system for coordinating and tracking dispatch operations, so staff can log incoming requests, assign them, and follow them through to completion.</p>
+        <div class="match"><b>Why it's relevant:</b> dispatch workflows are close to support-ticket management in a staff admin portal.</div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <h2>Skills</h2>
+    <p class="lede">Tools I use in production work.</p>
+    <div class="skills">
+      <div><h3>Back end</h3><ul class="chips"><li>PHP</li><li>Laravel</li><li>CodeIgniter</li><li>RESTful APIs</li><li>Python</li></ul></div>
+      <div><h3>Front end</h3><ul class="chips"><li>JavaScript</li><li>React.js</li><li>React Native</li><li>HTML &amp; CSS</li><li>Bootstrap</li><li>Tailwind CSS</li></ul></div>
+      <div><h3>Data</h3><ul class="chips"><li>MySQL</li><li>Schema design</li><li>SQL reporting</li><li>MySQL Workbench</li></ul></div>
+      <div><h3>Workflow</h3><ul class="chips"><li>Git</li><li>GitHub</li><li>Deployment</li><li>VS Code</li><li>XAMPP</li><li>Draw.io</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <h2>Experience</h2>
+    <p class="lede">Most recent first.</p>
+    <ol class="timeline">
+      <li>
+        <div class="when">2023 to present</div>
+        <h3>Full-Stack Developer</h3>
+        <div class="org">The Lewis College</div>
+        <ul>
+          <li>Design and build web and mobile apps with Laravel, React.js and React Native.</li>
+          <li>Build and maintain the REST APIs and MySQL schemas behind HRIS, timekeeping and payroll.</li>
+          <li>Deploy and maintain apps across development and production environments.</li>
+          <li>Troubleshoot and optimize existing applications to improve code quality and performance.</li>
+        </ul>
+      </li>
+      <li>
+        <div class="when">2023 to 2026</div>
+        <h3>Part-Time Full-Stack Developer</h3>
+        <div class="org">MAB Business Solutions</div>
+        <ul>
+          <li>Developed and maintained client web apps with Laravel, CodeIgniter, Bootstrap and JavaScript.</li>
+          <li>Worked with cross-functional teams across the full development lifecycle on production projects.</li>
+        </ul>
+      </li>
+      <li>
+        <div class="when">2023 to present</div>
+        <h3>IT Instructor</h3>
+        <div class="org">The Lewis College</div>
+        <ul>
+          <li>Teach web development, algorithms and data structures.</li>
+          <li>Write course materials and hands-on exercises, and mentor students one-on-one and in groups.</li>
+        </ul>
+      </li>
+      <li>
+        <div class="when">2019 to 2023</div>
+        <h3>BS Information Technology</h3>
+        <div class="org">The Lewis College, Sorsogon City</div>
+        <ul><li>Graduated with the Academic Distinction Award.</li></ul>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Recognition</h2>
+    <p class="lede">Competitions, awards and community work.</p>
+    <div class="awards">
+      <div class="award big"><h3>Overall Champion, team ranking</h3><p>Ateneo Programming Challenge 2021. I also placed 12th in the individual ranking.</p></div>
+      <div class="award"><h3>Academic Distinction Award</h3><p>The Lewis College, 2023</p></div>
+      <div class="award"><h3>Service Award</h3><p>The Lewis College, 2023</p></div>
+      <div class="award"><h3>Guest speaker</h3><p>ICT Vocational Upgrading Sessions, 2024</p></div>
+      <div class="award"><h3>Bicol IT Students Congress</h3><p>BITSCON, 2024</p></div>
+      <div class="award"><h3>Zero Trust Fundamentals</h3><p>DICT webinar on cloud security, 2022</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <h2>Let's talk.</h2>
+    <p class="lede">I'm open to full-time, work-from-home roles in PHP and Laravel development.</p>
+    <dl>
+      <dt>Email</dt><dd><a href="mailto:hitajerico@gmail.com">hitajerico@gmail.com</a></dd>
+      <dt>Phone</dt><dd><a href="tel:+639612581325">+63 961 258 1325</a></dd>
+      <dt>Location</dt><dd>Sorsogon, Philippines</dd>
+    </dl>
+    <a class="btn primary" href="mailto:hitajerico@gmail.com">Email me</a>
+  </div>
+</section>
+
+<footer><div class="wrap">© 2026 Jerico Hita</div></footer>
+</body>
+</html>
