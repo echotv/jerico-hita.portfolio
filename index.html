@@ -98,6 +98,17 @@ nav ul a:hover{color:var(--ink)}
 .project .match{background:var(--accent-soft);border-left:3px solid var(--accent);padding:.8rem 1rem;border-radius:0 8px 8px 0;font-size:.95rem;max-width:62ch}
 .project .match b{color:var(--accent)}
 
+
+/* how the stack fits together */
+.how{margin:0 0 1rem;max-width:62ch}
+.how h4{font:600 .95rem/1.3 var(--body);color:var(--muted);margin:0 0 .6rem}
+.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:.4rem;margin:0 0 .8rem;padding:0;list-style:none}
+.flow li{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:.5rem .75rem;font-size:.88rem;line-height:1.35}
+.flow li b{display:block;font-size:.93rem}
+.flow li span{color:var(--muted)}
+.flow .arrow{background:none;border:0;padding:0 .1rem;align-self:center;color:var(--accent);font-weight:600}
+.how p{font-size:.97rem;color:var(--muted);margin:0}
+
 /* timeline */
 .timeline{list-style:none;margin:0;padding:0;border-left:2px solid var(--line)}
 .timeline li{position:relative;padding:0 0 2.5rem 2rem}
@@ -163,7 +174,7 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.9rem}
       </div>
       <hr>
       <div class="row"><span>PHP / LARAVEL</span><span>1</span></div>
-      <div class="row"><span>CODEIGNITER</span><span>1</span></div>
+      <div class="row"><span>CODEIGNITER 4</span><span>1</span></div>
       <div class="row"><span>REACT.JS</span><span>1</span></div>
       <div class="row"><span>REACT NATIVE</span><span>1</span></div>
       <div class="row"><span>MYSQL</span><span>1</span></div>
@@ -196,37 +207,41 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.9rem}
 <section id="work">
   <div class="wrap">
     <h2>Selected work</h2>
-    <p class="lede">Systems I've designed and built end to end. Most are private or institutional, so each one is described by what it does and what I was responsible for.</p>
+    <p class="lede">I was the full-stack developer on all four systems, responsible for planning, database structure, implementation and ongoing maintenance. Most are private or institutional, so each one is described by what it does and what I built.</p>
 
     <article class="project">
-      <div><h3>POS System</h3><div class="kind">Retail and sales</div></div>
+      <div><h3>POS System</h3><div class="kind">Retail and sales<br>CodeIgniter 4, Bootstrap, MySQL</div></div>
       <div>
-        <p>A point-of-sale application for processing transactions and tracking sales. I built it full stack: the database design for products, transactions and sales records, the back-end logic, and the cashier-facing interface.</p>
+        <p>A point-of-sale application for processing transactions and tracking sales. I planned the system with stakeholders, designed the MySQL structure for products, transactions and sales records, built the back end in CodeIgniter 4 and the cashier interface in Bootstrap, and I maintain it in production.</p>
+        <div class="how"><h4>How the stack works together</h4><ol class="flow"><li><b>Bootstrap</b><span>Screens and forms</span></li><li class="arrow" aria-hidden="true">⇄</li><li><b>CodeIgniter 4</b><span>Controllers and models</span></li><li class="arrow" aria-hidden="true">⇄</li><li><b>MySQL</b><span>Stored data</span></li></ol><p>CodeIgniter 4 follows an MVC structure. When a cashier completes a sale, the Bootstrap form sends it to a CodeIgniter controller, which validates the input and applies the business rules. A model then records the transaction in MySQL and updates the related records. CodeIgniter renders the result back through Bootstrap views, so the screens stay responsive on the desktops and tablets used at the counter.</p></div>
         <div class="match"><b>Why it's relevant:</b> the role includes developing and maintaining POS software for a Food &amp; Hospitality partner.</div>
       </div>
     </article>
 
     <article class="project">
-      <div><h3>Inventory System</h3><div class="kind">Operations</div></div>
+      <div><h3>Inventory System</h3><div class="kind">Operations<br>CodeIgniter 4, Bootstrap, MySQL</div></div>
       <div>
-        <p>A stock and inventory management platform for tracking items, stock levels and movement, with reporting so managers can see what's on hand.</p>
+        <p>A stock and inventory management platform for tracking items, stock levels and movement, with reporting so managers can see what's on hand. I handled it from planning and database design through the CodeIgniter 4 back end, the Bootstrap interface, and ongoing maintenance.</p>
+        <div class="how"><h4>How the stack works together</h4><ol class="flow"><li><b>Bootstrap</b><span>Screens and forms</span></li><li class="arrow" aria-hidden="true">⇄</li><li><b>CodeIgniter 4</b><span>Controllers and models</span></li><li class="arrow" aria-hidden="true">⇄</li><li><b>MySQL</b><span>Stored data</span></li></ol><p>The same CodeIgniter 4 and MySQL setup keeps stock accurate. Every stock-in, stock-out and adjustment goes through a controller and model, so all changes follow the same rules and leave a record. Reports are built from MySQL queries that summarize stock levels and movement, then shown in Bootstrap tables that managers can scan quickly.</p></div>
         <div class="match"><b>Why it's relevant:</b> inventory data is the backbone of any POS, and it's the kind of large, frequently updated dataset that needs efficient MySQL queries.</div>
       </div>
     </article>
 
     <article class="project">
-      <div><h3>HRIS, web and mobile</h3><div class="kind">The Lewis College · Laravel, React, React Native, MySQL</div></div>
+      <div><h3>HRIS, web and mobile</h3><div class="kind">The Lewis College<br>Laravel, React.js, React Native, MySQL</div></div>
       <div>
-        <p>A human resource information system covering employee profiles, leave requests, timekeeping and payroll. I built the RESTful API and MySQL schema that both the web app and the React Native mobile app use, and I deploy and maintain it in production.</p>
+        <p>A human resource information system covering employee profiles, leave requests, timekeeping and payroll. I planned it, designed the MySQL schema, and built a Laravel REST API that serves two front ends: a React.js web app for HR staff, and a React Native mobile app where employees manage their own accounts. I deploy and maintain it in production.</p>
+        <div class="how"><h4>How the stack works together</h4><ol class="flow"><li><b>React.js web app</b><span>HR staff</span></li><li class="arrow" aria-hidden="true">⇄</li><li><b>Laravel REST API</b><span>Auth, rules, payroll logic</span></li><li class="arrow" aria-hidden="true">⇄</li><li><b>MySQL</b><span>Employees, leave, time</span></li><li class="arrow" aria-hidden="true">⇄</li><li><b>React Native app</b><span>Employee accounts</span></li></ol><p>Laravel is the single back end for both apps. It handles authentication, validation, and the rules for leave approvals, timekeeping and payroll, and it stores everything in MySQL. HR staff work in the React.js web app, while employees use the React Native mobile app to view their records and file requests. Both apps call the same REST API, so a leave request filed on a phone shows up for HR in the web app right away, and every rule lives in one place.</p></div>
         <div class="match"><b>Why it's relevant:</b> this is the same shape as the admin, reseller and customer portals in the role: one API, several front ends, real users relying on it.</div>
       </div>
     </article>
 
     <article class="project">
-      <div><h3>Computer-Aided Dispatch</h3><div class="kind">Operations and coordination</div></div>
+      <div><h3>Computer-Aided Dispatch</h3><div class="kind">Operations and coordination<br>Laravel, React.js, React Native, MySQL</div></div>
       <div>
-        <p>A system for coordinating and tracking dispatch operations, so staff can log incoming requests, assign them, and follow them through to completion.</p>
-        <div class="match"><b>Why it's relevant:</b> dispatch workflows are close to support-ticket management in a staff admin portal.</div>
+        <p>A system for coordinating and tracking dispatch operations. Dispatchers log incoming requests and assign them in a web app, and responders receive their assignments and update their status from a mobile app, so every request can be followed through to completion. I planned it, designed the MySQL structure, built the Laravel back end, the React.js dispatcher app and the React Native responder app, and I maintain all of it.</p>
+        <div class="how"><h4>How the stack works together</h4><ol class="flow"><li><b>React.js web app</b><span>Dispatchers</span></li><li class="arrow" aria-hidden="true">⇄</li><li><b>Laravel REST API</b><span>Assignments and status</span></li><li class="arrow" aria-hidden="true">⇄</li><li><b>MySQL</b><span>Requests and history</span></li><li class="arrow" aria-hidden="true">⇄</li><li><b>React Native app</b><span>Responders</span></li></ol><p>Laravel is the single back end for both apps. A dispatcher logs a request and assigns a responder in the React.js web app, which updates without full page reloads so it keeps up when requests come in quickly. Laravel validates the assignment and saves it to MySQL, and the responder sees it in the React Native app on their phone. As the responder updates their status, those changes go through the same API, so the dispatcher sees progress in the web app and every step is kept in the request's history.</p></div>
+        <div class="match"><b>Why it's relevant:</b> one API serving a staff web app and a field mobile app is the same pattern as the admin, reseller and customer portals in the role, and dispatch tracking is close to support-ticket management.</div>
       </div>
     </article>
   </div>
