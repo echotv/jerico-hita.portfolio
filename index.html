@@ -98,7 +98,6 @@ nav ul a:hover{color:var(--ink)}
 .project .match{background:var(--accent-soft);border-left:3px solid var(--accent);padding:.8rem 1rem;border-radius:0 8px 8px 0;font-size:.95rem;max-width:62ch}
 .project .match b{color:var(--accent)}
 
-
 /* how the stack fits together */
 .how{margin:0 0 1rem;max-width:62ch}
 .how h4{font:600 .95rem/1.3 var(--body);color:var(--muted);margin:0 0 .6rem}
@@ -108,6 +107,13 @@ nav ul a:hover{color:var(--ink)}
 .flow li span{color:var(--muted)}
 .flow .arrow{background:none;border:0;padding:0 .1rem;align-self:center;color:var(--accent);font-weight:600}
 .how p{font-size:.97rem;color:var(--muted);margin:0}
+
+/* challenges */
+.challenges{margin:0 0 1rem;max-width:62ch}
+.challenges h4{font:600 .95rem/1.3 var(--body);color:var(--muted);margin:0 0 .6rem}
+.challenges dl{margin:0;display:grid;gap:.9rem}
+.challenges dt{font-weight:600}
+.challenges dd{margin:.15rem 0 0;color:var(--muted);font-size:.97rem}
 
 /* timeline */
 .timeline{list-style:none;margin:0;padding:0;border-left:2px solid var(--line)}
@@ -196,7 +202,7 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.9rem}
     <h2>What I bring to your team</h2>
     <p class="lede">The work I've done lines up closely with building portals, APIs and point-of-sale software for telco and hospitality clients.</p>
     <div class="fit">
-      <div><h3>Point-of-sale experience</h3><p>I've built a POS for transaction processing and sales tracking, plus the inventory system that sits behind it.</p></div>
+      <div><h3>Point-of-sale experience</h3><p>I've built a POS and inventory system that's in daily use at a pharmacy, designed to stay fast with large product and sales data and easy for non-technical staff.</p></div>
       <div><h3>Admin portals and APIs</h3><p>I design MySQL schemas and RESTful APIs for internal systems like HRIS, timekeeping and payroll, used by staff every day.</p></div>
       <div><h3>Framework and no framework</h3><p>I work in Laravel and CodeIgniter, and I'm comfortable in plain PHP and JavaScript when an existing codebase calls for it.</p></div>
       <div><h3>Clear communicator</h3><p>As an IT instructor I explain code for a living, which carries straight into code reviews, documentation and working with clients.</p></div>
@@ -210,19 +216,21 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.9rem}
     <p class="lede">I was the full-stack developer on all four systems, responsible for planning, database structure, implementation and ongoing maintenance. Most are private or institutional, so each one is described by what it does and what I built.</p>
 
     <article class="project">
-      <div><h3>POS System</h3><div class="kind">Retail and sales<br>CodeIgniter 4, Bootstrap, MySQL</div></div>
+      <div><h3>POS System</h3><div class="kind">Deployed in a pharmacy<br>CodeIgniter 4, Bootstrap, MySQL</div></div>
       <div>
-        <p>A point-of-sale application for processing transactions and tracking sales. I planned the system with stakeholders, designed the MySQL structure for products, transactions and sales records, built the back end in CodeIgniter 4 and the cashier interface in Bootstrap, and I maintain it in production.</p>
+        <p>A point-of-sale application deployed in a pharmacy, where staff use it to process transactions and track sales every day. I planned the system with stakeholders, designed the MySQL structure for products, transactions and sales records, built the back end in CodeIgniter 4 and the cashier interface in Bootstrap, and I maintain it in production.</p>
         <div class="how"><h4>How the stack works together</h4><ol class="flow"><li><b>Bootstrap</b><span>Screens and forms</span></li><li class="arrow" aria-hidden="true">⇄</li><li><b>CodeIgniter 4</b><span>Controllers and models</span></li><li class="arrow" aria-hidden="true">⇄</li><li><b>MySQL</b><span>Stored data</span></li></ol><p>CodeIgniter 4 follows an MVC structure. When a cashier completes a sale, the Bootstrap form sends it to a CodeIgniter controller, which validates the input and applies the business rules. A model then records the transaction in MySQL and updates the related records. CodeIgniter renders the result back through Bootstrap views, so the screens stay responsive on the desktops and tablets used at the counter.</p></div>
-        <div class="match"><b>Why it's relevant:</b> the role includes developing and maintaining POS software for a Food &amp; Hospitality partner.</div>
+        <div class="challenges"><h4>Challenges I solved</h4><dl><dt>Keeping checkout fast with a large product list</dt><dd>A pharmacy carries thousands of products, and the sales table grows with every transaction. I optimized the MySQL queries and database structure so product search and checkout stay quick, loading only the data each screen needs instead of whole tables.</dd><dt>Making it easy for non-technical staff</dt><dd>The cashiers and pharmacy staff aren't tech-savvy, so I designed the interface around their daily routine: a simple search to find items, clear labels and large buttons, few steps to complete a sale, and plain-language messages when something needs attention.</dd></dl></div>
+        <div class="match"><b>Why it's relevant:</b> the role includes developing and maintaining POS software for a Food &amp; Hospitality partner, used by staff in a busy retail setting just like a pharmacy.</div>
       </div>
     </article>
 
     <article class="project">
-      <div><h3>Inventory System</h3><div class="kind">Operations<br>CodeIgniter 4, Bootstrap, MySQL</div></div>
+      <div><h3>Inventory System</h3><div class="kind">Deployed in a pharmacy<br>CodeIgniter 4, Bootstrap, MySQL</div></div>
       <div>
-        <p>A stock and inventory management platform for tracking items, stock levels and movement, with reporting so managers can see what's on hand. I handled it from planning and database design through the CodeIgniter 4 back end, the Bootstrap interface, and ongoing maintenance.</p>
+        <p>A stock and inventory management platform deployed in the same pharmacy, working alongside the POS. It tracks items, stock levels and movement, with reporting so managers can see what's on hand. I handled it from planning and database design through the CodeIgniter 4 back end, the Bootstrap interface, and ongoing maintenance.</p>
         <div class="how"><h4>How the stack works together</h4><ol class="flow"><li><b>Bootstrap</b><span>Screens and forms</span></li><li class="arrow" aria-hidden="true">⇄</li><li><b>CodeIgniter 4</b><span>Controllers and models</span></li><li class="arrow" aria-hidden="true">⇄</li><li><b>MySQL</b><span>Stored data</span></li></ol><p>The same CodeIgniter 4 and MySQL setup keeps stock accurate. Every stock-in, stock-out and adjustment goes through a controller and model, so all changes follow the same rules and leave a record. Reports are built from MySQL queries that summarize stock levels and movement, then shown in Bootstrap tables that managers can scan quickly.</p></div>
+        <div class="challenges"><h4>Challenges I solved</h4><dl><dt>Handling large stock records and reports</dt><dd>Every sale and delivery adds stock movement records, so the data grows quickly. I optimized the MySQL queries behind stock levels and reports so managers get results quickly, even with a long history of transactions.</dd><dt>Designing for everyday users</dt><dd>Staff record deliveries and adjustments during a busy workday, so I kept forms short and clearly labeled, made stock levels easy to read at a glance, and used straightforward wording instead of technical terms.</dd></dl></div>
         <div class="match"><b>Why it's relevant:</b> inventory data is the backbone of any POS, and it's the kind of large, frequently updated dataset that needs efficient MySQL queries.</div>
       </div>
     </article>
