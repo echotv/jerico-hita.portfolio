@@ -97,6 +97,8 @@ nav ul a:hover{color:var(--ink)}
 .project p{margin:0 0 1rem;max-width:62ch}
 .project .match{background:var(--accent-soft);border-left:3px solid var(--accent);padding:.8rem 1rem;border-radius:0 8px 8px 0;font-size:.95rem;max-width:62ch}
 .project .match b{color:var(--accent)}
+.doclink{display:inline-block;margin-top:.8rem;font-weight:600;font-size:.95rem}
+.project .note{font-size:.95rem;color:var(--muted);margin-top:1rem;padding-top:1rem;border-top:1px dashed var(--line)}
 
 /* how the stack fits together */
 .how{margin:0 0 1rem;max-width:62ch}
@@ -203,7 +205,7 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.9rem}
     <p class="lede">The work I've done lines up closely with building portals, APIs and point-of-sale software for telco and hospitality clients.</p>
     <div class="fit">
       <div><h3>Point-of-sale experience</h3><p>I've built a POS and inventory system that's in daily use at a pharmacy, designed to stay fast with large product and sales data and easy for non-technical staff.</p></div>
-      <div><h3>Admin portals and APIs</h3><p>I design MySQL schemas and RESTful APIs for internal systems like HRIS, timekeeping and payroll, used by staff every day.</p></div>
+      <div><h3>Admin portals and APIs</h3><p>I design MySQL schemas, APIs and staff portals for internal systems like HRIS, timekeeping and payroll, with role-based permissions, approval workflows and audit logs.</p></div>
       <div><h3>Framework and no framework</h3><p>I work in Laravel and CodeIgniter, and I'm comfortable in plain PHP and JavaScript when an existing codebase calls for it.</p></div>
       <div><h3>Clear communicator</h3><p>As an IT instructor I explain code for a living, which carries straight into code reviews, documentation and working with clients.</p></div>
     </div>
@@ -236,11 +238,13 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.9rem}
     </article>
 
     <article class="project">
-      <div><h3>HRIS, web and mobile</h3><div class="kind">The Lewis College<br>Laravel, React.js, React Native, MySQL</div></div>
+      <div><h3>TLC-HRIS, web and mobile</h3><div class="kind">The Lewis College<br>Laravel, Bootstrap, React Native, MySQL</div><a class="doclink" href="https://tlc-hris-docs.vercel.app/" target="_blank" rel="noopener">Read the documentation</a></div>
       <div>
-        <p>A human resource information system covering employee profiles, leave requests, timekeeping and payroll. I planned it, designed the MySQL schema, and built a Laravel REST API that serves two front ends: a React.js web app for HR staff, and a React Native mobile app where employees manage their own accounts. I deploy and maintain it in production.</p>
-        <div class="how"><h4>How the stack works together</h4><ol class="flow"><li><b>React.js web app</b><span>HR staff</span></li><li class="arrow" aria-hidden="true">⇄</li><li><b>Laravel REST API</b><span>Auth, rules, payroll logic</span></li><li class="arrow" aria-hidden="true">⇄</li><li><b>MySQL</b><span>Employees, leave, time</span></li><li class="arrow" aria-hidden="true">⇄</li><li><b>React Native app</b><span>Employee accounts</span></li></ol><p>Laravel is the single back end for both apps. It handles authentication, validation, and the rules for leave approvals, timekeeping and payroll, and it stores everything in MySQL. HR staff work in the React.js web app, while employees use the React Native mobile app to view their records and file requests. Both apps call the same REST API, so a leave request filed on a phone shows up for HR in the web app right away, and every rule lives in one place.</p></div>
-        <div class="match"><b>Why it's relevant:</b> this is the same shape as the admin, reseller and customer portals in the role: one API, several front ends, real users relying on it.</div>
+        <p>The human resources information system of The Lewis College, used by HR staff, immediate heads and employees. It covers employee and faculty records, departments, colleges and positions, leave types, credits, requests and a company-wide leave calendar, overtime, compensatory time-off (CTO) and official business travel (OBT), and timekeeping with holidays, cut-off periods, daily attendance and attendance summary reports. Administrators manage user accounts, role-based permissions and an audit log, and every user gets in-app notifications.</p>
+        <p>I planned it, designed the MySQL schema, built the Laravel back end and Bootstrap web app, and built the React Native mobile app where employees file leave, overtime, CTO and OBT requests, check their attendance and schedule, and manage their profile. I deploy and maintain it in production. The system has online documentation with real screenshots, validation rules and FAQs for each module.</p>
+        <div class="how"><h4>How the stack works together</h4><ol class="flow"><li><b>Bootstrap web app</b><span>HR, heads, employees</span></li><li class="arrow" aria-hidden="true">⇄</li><li><b>Laravel</b><span>Rules, approvals, permissions</span></li><li class="arrow" aria-hidden="true">⇄</li><li><b>MySQL</b><span>Employees, leave, attendance</span></li><li class="arrow" aria-hidden="true">⇄</li><li><b>React Native app</b><span>Employees on mobile</span></li></ol><p>Laravel is the single back end for both apps. It serves the Bootstrap web app and a REST API for the React Native app, and it enforces the business rules for every form, the role permissions, and the approval workflow: an employee files a request, their immediate head approves it, and HR tracks it. Daily attendance comes from the biometric device and is grouped by cut-off period in MySQL, so attendance summary reports combine leave credits, time-in and time-out, and remarks. Because both apps share one back end, a leave request filed on a phone appears for the immediate head and HR on the web right away, with a notification.</p></div>
+        <div class="match"><b>Why it's relevant:</b> role-based access, approval workflows, audit logs and one back end serving web and mobile are the same building blocks as the admin, reseller and customer portals in the role.</div>
+        <p class="note">I also built a separate HRIS with payroll for another business. Its code and data are confidential, so it isn't shown here, but I'm happy to talk through how I approached it.</p>
       </div>
     </article>
 
@@ -278,8 +282,8 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.9rem}
         <h3>Full-Stack Developer</h3>
         <div class="org">The Lewis College</div>
         <ul>
-          <li>Design and build web and mobile apps with Laravel, React.js and React Native.</li>
-          <li>Build and maintain the REST APIs and MySQL schemas behind HRIS, timekeeping and payroll.</li>
+          <li>Design and build web and mobile apps with Laravel, Bootstrap, React.js and React Native.</li>
+          <li>Built and maintain TLC-HRIS, including its REST API, MySQL schema, and its web and mobile apps.</li>
           <li>Deploy and maintain apps across development and production environments.</li>
           <li>Troubleshoot and optimize existing applications to improve code quality and performance.</li>
         </ul>
